@@ -26,6 +26,9 @@ gem 'i18n'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 
+#QR code
+gem 'rqrcode', '~> 0.10.1'
+
 
 group :development, :test do
   gem 'binding_of_caller'
