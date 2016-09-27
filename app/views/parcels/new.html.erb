@@ -1,2 +1,13 @@
-<h1>Parcels#new</h1>
-<p>Find me in app/views/parcels/new.html.erb</p>
+
+
+<div class="container padded">
+  <div class="row">
+    <div class="text-center">
+      <h1>Parcels#new</h1>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= render "parcels/form_parcel", parcel: @parcel %>
+    </div>
+  </div>
+</div>
+
