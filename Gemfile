@@ -17,6 +17,19 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+#pundit
+gem 'pundit'
+
+
+#locales
+gem 'i18n'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
+#QR code
+gem 'rqrcode', '~> 0.10.1'
+
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -24,8 +37,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
-  
-  
+
+
 end
 
 gem 'rails_12factor', group: :production

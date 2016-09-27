@@ -1,0 +1,13 @@
+<%= simple_form_for (parcel) do |f|%>
+  <%= f.input :description, label: "Description du colis" %>
+  <%= f.input :code, label: "Code associé au colis" %>
+  <!-- <div id="error-title" class="hidden" style="color:#800000;">
+    <p>
+       #I18n.t(".missions.error-title")
+    </p>
+  </div> -->
+
+  <div class="text-center">
+    <%= f.button :submit, class:'btn navbar-wagon-button'%>
+  </div>
+<%end%>
