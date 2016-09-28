@@ -30,6 +30,7 @@ gem 'devise-i18n-views'
 gem 'rqrcode', '~> 0.10.1'
 
 
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -42,3 +43,6 @@ group :development, :test do
 end
 
 gem 'rails_12factor', group: :production
+
+#camera
+gem 'headshot'

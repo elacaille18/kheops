@@ -32,6 +32,7 @@ class ParcelsController < ApplicationController
   end
 
   def show
+    @qr = RQRCode::QRCode.new(@parcel.code, :size => 4, :level => :h )
     authorize @parcel
   end
 

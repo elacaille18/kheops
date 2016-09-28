@@ -11,20 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927103118) do
+ActiveRecord::Schema.define(version: 20160928093354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "parcels", force: :cascade do |t|
-    t.string   "description"
-    t.string   "code"
+  create_table "events", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "parcel_id"
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "parcels", ["user_id"], name: "index_parcels_on_user_id", using: :btree
+  add_index "events", ["parcel_id"], name: "index_events_on_parcel_id", using: :btree
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
+
+  create_table "headshot_photos", force: :cascade do |t|
+    t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "capturable_id"
+    t.string   "capturable_type"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "parcels", force: :cascade do |t|
+    t.string   "sender_first_name"
+    t.string   "code"
+    t.integer  "owner_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "sender_last_name"
+    t.string   "sender_phone"
+    t.string   "receiver_first_name"
+    t.string   "receiver_last_name"
+    t.string   "receiver_phone"
+    t.integer  "origin_id"
+    t.integer  "destination_id"
+  end
+
+  add_index "parcels", ["destination_id"], name: "index_parcels_on_destination_id", using: :btree
+  add_index "parcels", ["origin_id"], name: "index_parcels_on_origin_id", using: :btree
+  add_index "parcels", ["owner_id"], name: "index_parcels_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -44,5 +76,9 @@ ActiveRecord::Schema.define(version: 20160927103118) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "parcels", "users"
+  add_foreign_key "events", "parcels"
+  add_foreign_key "events", "users"
+  add_foreign_key "parcels", "users", column: "destination_id"
+  add_foreign_key "parcels", "users", column: "origin_id"
+  add_foreign_key "parcels", "users", column: "owner_id"
 end
