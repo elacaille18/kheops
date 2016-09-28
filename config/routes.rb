@@ -3,9 +3,15 @@ Rails.application.routes.draw do
   post "headshot_demo/capture" => 'headshot#capture', :as => :headshot_capture
   get 'headshot_demo/index'
 
+  get 'in'
+  get 'out'
 
   devise_for :users
   root to: 'pages#home'
+
+  # devise_scope :user do
+  #   root to: "devise/sessions#new"
+  # end
 
   resources :parcels, only: [:new, :create, :edit, :update, :show]
   # The priority is based upon order of creation: first created -> highest priority.

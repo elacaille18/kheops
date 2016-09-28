@@ -1,0 +1,42 @@
+<div class="container padded">
+  <div class="row">
+      <% if user_signed_in? %>
+      <div class="col-xs-6">
+        <div class="card choice" id="parcel-in">
+          <%= link_to "", new_parcel_path, class: "card-link"%>
+          <div class="choice-content">
+            <h1>Entrée de colis</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="card choice" id="parcel-out" >
+          <%= link_to "", new_parcel_path, class: "card-link"%>
+          <div class="choice-content">
+            <h1>Sortie de colis</h1>
+          </div>
+        </div>
+      </div>
+        <%= link_to "#" do %>
+          <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+        <% end %>
+
+
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+        <% end %>
+
+
+      <% else %>
+
+      <!-- Login text link -->
+       <!-- link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn"
+
+      link_to t(".sign_up", default: "Sign up"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn"  -->
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <%= render 'devise/sessions/new' %>
+      </div>
+      <% end %>
+  </div>
+</div>
