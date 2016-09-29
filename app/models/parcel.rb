@@ -11,4 +11,8 @@ class Parcel < ActiveRecord::Base
   # #Validations
   # validates :user, presence: true
   # validates :description, presence: true
+
+  def receiver_full_name
+    "#{self.receiver_first_name.capitalize} #{self.receiver_last_name.capitalize}"
+  end
 end

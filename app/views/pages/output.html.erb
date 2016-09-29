@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Output de colis</h1>
+        <% @parcels.each do |parcel| %>
+          <%= render "parcels/card_parcel", parcel: parcel %>
+        <%end%>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@
       <% if user_signed_in? %>
       <div class="col-xs-6">
         <div class="card choice" id="parcel-in">
-          <%= link_to "", new_parcel_path, class: "card-link"%>
+          <%= link_to "", input_path, class: "card-link"%>
           <div class="choice-content">
             <h1>Entrée de colis</h1>
           </div>
@@ -12,7 +12,7 @@
 
       <div class="col-xs-6">
         <div class="card choice" id="parcel-out" >
-          <%= link_to "", new_parcel_path, class: "card-link"%>
+          <%= link_to "", output_path, class: "card-link"%>
           <div class="choice-content">
             <h1>Sortie de colis</h1>
           </div>

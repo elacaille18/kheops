@@ -1,7 +1,9 @@
-<h1>Show des parcels</h1>
-
-<p>Parcel id = <%= @parcel.id %></p>
-<p>Parcel description = <%= @parcel.description %></p>
-<p>Parcel code = <%= @parcel.code ? @parcel.code : "pas de code pour l'instant" %></p>
-<p><%= raw @qr.as_html%></p>
+<div class="container">
+  <h1>Show des parcels</h1>
+  <p>Parcel id = <%= @parcel.id %></p>
+  <p>Parcel sender = <%= @parcel.sender_first_name%> <%= @parcel.sender_last_name%></p>
+  <p>Parcel receiver = <%= @parcel.receiver_full_name%></p>
+  <p><%= raw @qr.as_html%></p>
+  <p>Le QR code correspond au code suivant: <strong><%= @parcel.code%></strong></p>
+</div>
 
