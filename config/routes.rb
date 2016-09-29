@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   post "headshot_demo/capture" => 'headshot#capture', :as => :headshot_capture
   get 'headshot_demo/index'
 
-  get 'in'
-  get 'out'
 
   devise_for :users
   root to: 'pages#home'
 
+  get 'input' => 'pages#input'
+  get 'output' => 'pages#output'
   # devise_scope :user do
   #   root to: "devise/sessions#new"
   # end

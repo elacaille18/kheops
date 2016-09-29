@@ -6,6 +6,13 @@ class PagesController < ApplicationController
   def home
   end
 
+  def input
+  end
+
+  def output
+    @parcels = Parcel.all
+  end
+
   private
 
   def resource_name
