@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'input' => 'pages#input'
   get 'output' => 'pages#output'
+  get 'scanqr' => 'pages#scanqr'
   # devise_scope :user do
   #   root to: "devise/sessions#new"
   # end

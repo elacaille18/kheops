@@ -25,4 +25,6 @@ class ParcelPolicy < ApplicationPolicy
     true
     #record.user == user
   end
+
+
 end

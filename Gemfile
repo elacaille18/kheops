@@ -28,7 +28,13 @@ gem 'devise-i18n-views'
 
 #QR code
 gem 'rqrcode', '~> 0.10.1'
-
+gem 'qrio', '~> 0.0.1'
+#gem 'ruby-opencv', '~> 0.0.14'
+#gem 'hoe', '~> 3.15', '>= 3.15.1'
+#gem 'qrtools', '~> 1.0', '>= 1.0.1'
+#gem 'rmagick', '~> 2.15', '>= 2.15.4'
+#gem 'cmake', '~> 2.8', '>= 2.8.7'
+#gem 'zxing_cpp'
 
 
 group :development, :test do
