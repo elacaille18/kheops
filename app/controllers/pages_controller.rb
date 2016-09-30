@@ -1,3 +1,5 @@
+require 'qrio'
+
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
@@ -11,6 +13,10 @@ class PagesController < ApplicationController
 
   def output
     @parcels = Parcel.all
+  end
+
+  def scanqr
+    @result = Qrio::Qr.load("/Users/ericlacaille/Desktop/exqrcode.png").qr.text
   end
 
   private

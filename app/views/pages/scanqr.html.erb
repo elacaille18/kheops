@@ -1,0 +1,179 @@
+<div class="container">
+<h1>Camera API</h1>
+
+<section class="main-content">
+    <p>A demo of the Camera API, currently implemented in Firefox and Google Chrome on Android. Choose to take a picture with your device's camera and a preview will be shown through createObjectURL or a FileReader object (choosing local files supported too).</p>
+
+    <p>
+        <input type="file" id="take-picture" accept="image/*">
+    </p>
+
+    <h2>Preview:</h2>
+    <p>
+        <img src="about:blank" alt="" id="show-picture">
+    </p>
+
+    <p id="error"></p>
+
+</section>
+
+<p class="footer">All the code is available in the <a href="https://github.com/robnyman/robnyman.github.com/tree/master/camera-api">Camera API repository on GitHub</a>.</p>
+</div>
+
+
+<h1>Autre tentative avec Qrio</h1>
+
+<p>Le resultat du qrcode téléchargé est : <%= @result %></p>
+
+
+<h1>Tentative Ouverture Camera</h1>
+<!-- <video id='v'></video>
+<canvas id='c'></canvas>
+<button id='grey'>Toggle Greyness</button> -->
+<video id="video"></video>
+<button id="startbutton">Prendre une photo</button>
+<canvas id="canvas"></canvas>
+<img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
+
+
+<% content_for(:after_js) do %>
+  <script>
+  (function() {
+
+  var streaming = false,
+      video        = document.querySelector('#video'),
+      cover        = document.querySelector('#cover'),
+      canvas       = document.querySelector('#canvas'),
+      photo        = document.querySelector('#photo'),
+      startbutton  = document.querySelector('#startbutton'),
+      width = 320,
+      height = 0;
+
+  navigator.getMedia = ( navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia);
+
+  navigator.getMedia(
+    {
+      video: true,
+      audio: false
+    },
+    function(stream) {
+      if (navigator.mozGetUserMedia) {
+        video.mozSrcObject = stream;
+      } else {
+        var vendorURL = window.URL || window.webkitURL;
+        video.src = vendorURL.createObjectURL(stream);
+      }
+      video.play();
+    },
+    function(err) {
+      console.log("An error occured! " + err);
+    }
+  );
+
+  video.addEventListener('canplay', function(ev){
+    if (!streaming) {
+      height = video.videoHeight / (video.videoWidth/width);
+      video.setAttribute('width', width);
+      video.setAttribute('height', height);
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', height);
+      streaming = true;
+    }
+  }, false);
+
+  function takepicture() {
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+    var data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+  }
+
+  startbutton.addEventListener('click', function(ev){
+      takepicture();
+    ev.preventDefault();
+  }, false);
+
+})();
+//   window.addEventListener('DOMContentLoaded', function() {
+//    var v = document.getElementById('v');
+//    navigator.getUserMedia = (navigator.getUserMedia ||
+//                              navigator.webkitGetUserMedia ||
+//                              navigator.mozGetUserMedia ||
+//                              navigator.msGetUserMedia);
+//    if (navigator.getUserMedia) {
+//       // Request access to video only
+//       navigator.getUserMedia(
+//          {
+//             video:true,
+//             audio:false
+//          },
+//          function(stream) {
+//             var url = window.URL || window.webkitURL;
+//             v.src = url ? url.createObjectURL(stream) : stream;
+//             v.play();
+//          },
+//          function(error) {
+//             alert('Something went wrong. (error code ' + error.code + ')');
+//             return;
+//          }
+//       );
+//    }
+//    else {
+//       alert('Sorry, the browser you are using doesn\'t support getUserMedia');
+//       return;
+//    }
+// });
+
+
+  // (function () {
+  //     var takePicture = document.querySelector("#take-picture"),
+  //         showPicture = document.querySelector("#show-picture");
+
+  //     console.log(takePicture);
+
+  //     if (takePicture && showPicture) {
+  //         // Set events
+  //         takePicture.onchange = function (event) {
+  //             // Get a reference to the taken picture or chosen file
+  //             var files = event.target.files,
+  //                 file;
+  //             if (files && files.length > 0) {
+  //                 file = files[0];
+  //                 try {
+  //                     // Create ObjectURL
+  //                     var imgURL = window.URL.createObjectURL(file);
+
+  //                     // Set img src to ObjectURL
+  //                     showPicture.src = imgURL;
+
+  //                     // Revoke ObjectURL
+  //                     URL.revokeObjectURL(imgURL);
+  //                 }
+  //                 catch (e) {
+  //                     try {
+  //                         // Fallback if createObjectURL is not supported
+  //                         var fileReader = new FileReader();
+  //                         fileReader.onload = function (event) {
+  //                             showPicture.src = event.target.result;
+  //                         };
+  //                         fileReader.readAsDataURL(file);
+  //                     }
+  //                     catch (e) {
+  //                         //
+  //                         var error = document.querySelector("#error");
+  //                         if (error) {
+  //                             error.innerHTML = "Neither createObjectURL or FileReader are supported";
+  //                         }
+  //                     }
+  //                 }
+  //             }
+  //         };
+  //     }
+  // })();
+
+  </script>
+<% end %>
