@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  post "headshot_demo/capture" => 'headshot#capture', :as => :headshot_capture
-  get 'headshot_demo/index'
-
-
   devise_for :users
   root to: 'pages#home'
 

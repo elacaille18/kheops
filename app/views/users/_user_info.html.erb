@@ -1,0 +1,13 @@
+<div class="user-info text-center">
+  <div id=user-avatar>
+    <%= image_tag "logo", class:"avatar-bordered" %>
+  </div>
+  <div id= user-info >
+    <%= current_user.email%>
+    <% if current_user.pudo %>
+      <p>Point relais de <%= current_user.pudo_city %></p>
+    <% else %>
+      <p>Particulier</p>
+    <% end %>
+  </div>
+</div>
