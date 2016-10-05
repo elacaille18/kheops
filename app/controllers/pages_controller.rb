@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def scanqr
-    @result = Qrio::Qr.load("/Users/ericlacaille/Desktop/exqrcode.png").qr.text
+    #@result = Qrio::Qr.load("/Users/ericlacaille/Desktop/exqrcode.png").qr.text
   end
 
   private
