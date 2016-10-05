@@ -1,24 +1,4 @@
 <div class="container">
-<h1>Camera API</h1>
-
-<section class="main-content">
-    <p>A demo of the Camera API, currently implemented in Firefox and Google Chrome on Android. Choose to take a picture with your device's camera and a preview will be shown through createObjectURL or a FileReader object (choosing local files supported too).</p>
-
-    <p>
-        <input type="file" id="take-picture" accept="image/*">
-    </p>
-
-    <h2>Preview:</h2>
-    <p>
-        <img src="about:blank" alt="" id="show-picture">
-    </p>
-
-    <p id="error"></p>
-
-</section>
-
-<p class="footer">All the code is available in the <a href="https://github.com/robnyman/robnyman.github.com/tree/master/camera-api">Camera API repository on GitHub</a>.</p>
-</div>
 
 
 <h1>Autre tentative avec Qrio</h1>
@@ -30,10 +10,10 @@
 
 <div id="video-set-up">
   <video id="video"></video>
-  <button id="startbutton">Prendre une photo</button>
   <canvas id="canvas" class="hidden"></canvas>
+  <img src="http://placekitten.com/g/320/261" id="photo" alt="photo" class="hidden">
+  <button id="startbutton">Prendre une photo</button>
 </div>
-<img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
 
 
 <% content_for(:after_js) do %>
@@ -170,6 +150,7 @@
 
       startbutton.addEventListener('click', function(ev){
         takepicture();
+
         ev.preventDefault();
       }, false);
 
@@ -185,7 +166,10 @@
       context.fillRect(0, 0, canvas.width, canvas.height);
 
       var data = canvas.toDataURL('image/png');
+
       photo.setAttribute('src', data);
+      //var qrcode = # Qrio::Qr.load(photo).qr.text
+      console.log(photo);
     }
 
     // Capture a photo by fetching the current contents of the video
@@ -202,6 +186,7 @@
         context.drawImage(video, 0, 0, width, height);
 
         var data = canvas.toDataURL('image/png');
+        console.log(data);
         photo.setAttribute('src', data);
       } else {
         clearphoto();
