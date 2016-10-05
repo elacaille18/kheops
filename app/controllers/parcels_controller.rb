@@ -41,6 +41,16 @@ class ParcelsController < ApplicationController
     authorize @parcel
   end
 
+  def decode
+    @parcel = Parcel.new
+    authorize @parcel
+    @data = params[:data]
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
+  end
+
   private
 
   def set_parcel

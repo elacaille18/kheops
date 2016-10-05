@@ -1,7 +1,16 @@
+<div class="bandeau">
+  <div class="bandeau-link">
+    <%= link_to root_path do %>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+  </div>
+  <div class=bandeau-title>
+    <h3>Sortie de Colis</h3>
+  </div>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h1>Output de colis</h1>
         <% @parcels.each do |parcel| %>
           <%= render "parcels/card_parcel", parcel: parcel %>
         <%end%>
