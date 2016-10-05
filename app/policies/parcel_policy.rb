@@ -26,5 +26,7 @@ class ParcelPolicy < ApplicationPolicy
     #record.user == user
   end
 
-
+  def decode?
+    true
+  end
 end
