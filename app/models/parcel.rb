@@ -13,6 +13,7 @@ class Parcel < ActiveRecord::Base
   "CIME", "CINQ", "CINE", "CLEF", "CLIC", "CLOU", "CLUB", "COCA", "COCO", "CODE",  "COOL", \
   "CUBE", "CUVE", "DADA", "DATE", "DEMI", "DENT", "DEUX", "DODO", "DONC", "DOUX", "DRAP", "DUEL", \
   "DUNE", "DEFI", "DEJA", "DINE", "DOME", "ELLE", "EXIL", "EDEN", "EGAL", "ELAN", "EMIR", "EPEE", "ETAT", "ETUI", "ETRE"]
+
   before_validation(on: :create) do
     self.code = CODE_WORDS.sample
   end
