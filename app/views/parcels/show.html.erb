@@ -1,9 +1,23 @@
-<div class="container">
-  <h1>Show des parcels</h1>
-  <p>Parcel id = <%= @parcel.id %></p>
-  <p>Parcel sender = <%= @parcel.sender_first_name%> <%= @parcel.sender_last_name%></p>
-  <p>Parcel receiver = <%= @parcel.receiver_full_name%></p>
-  <p><%= raw @qr.as_html%></p>
-  <p>Le QR code correspond au code suivant: <strong><%= @parcel.code%></strong></p>
+<div class="bandeau">
+  <div class=bandeau-title>
+    <h3>Nouveau colis</h3>
+  </div>
+</div>
+<div class="container padded">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card text-center" id="card-code">
+        <p>Mot à écrire sur le colis</p>
+        <!-- <p>< raw @qr.as_html</p> -->
+        <div id="code-display">
+          <h1><%= @parcel.code%></h1>
+        </div>
+      </div>
+      <div class="text-center">
+        <p>Ranger le colis</p>
+        <%= link_to "Valider", root_path, class: "btn navbar-wagon-button"%>
+      </div>
+    </div>
+  </div>
 </div>
 

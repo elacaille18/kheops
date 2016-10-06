@@ -11,7 +11,7 @@ class ParcelsController < ApplicationController
     @parcel = Parcel.new(parcel_params)
     @parcel.origin = current_user
     @parcel.owner = current_user
-    @parcel.code = "wagon"
+    # @parcel.code = "wagon"
     authorize @parcel
     if @parcel.save
         @parcel.touch
@@ -42,9 +42,9 @@ class ParcelsController < ApplicationController
   end
 
   def decode
-    @parcel = Parcel.new
-    authorize @parcel
     @data = params[:data]
+    @parcel = Parcel.last
+    authorize @parcel
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js

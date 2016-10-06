@@ -1,0 +1,34 @@
+<div class="card text-center">
+  <p>Code de sortie</p>
+  <strong>1234</strong>
+</div>
+
+<div style="margin-top:5px;"></div>
+<form>
+  <div class="form-group">
+    <label for="code-parcel">Taper le "mot" du colis</label>
+    <input type="text" class="form-control" id="code-parcel" placeholder="ex:ABCD">
+    <div class="text-center" style="margin-top:5px;">
+      <button type="submit" class="btn navbar-wagon-button">Valider</button>
+    </div>
+  </div>
+</form>
+
+<!-- <%# simple_form_for parcel do |f| %>
+  # f.input :code %>
+  # f.button :submit, class:'btn navbar-wagon-button', id:"submit"%>
+   #end
+ -->
+<% content_for(:after_js) do %>
+  <script>
+    console.log("j'atteinds ce Js");
+    $('#submit').click(function(){
+        var code_try = $("#code_try").val();
+        if($('input').attr("value") == <%= parcel.code %>)
+        {
+            alert("enter something first dummy!");
+            return false;
+        }
+    });
+  </script>
+<%end%>

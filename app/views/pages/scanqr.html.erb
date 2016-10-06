@@ -1,21 +1,34 @@
-<div class="container">
-
-
-<h1>Autre tentative avec Qrio</h1>
-
-<!-- <p>Le resultat du qrcode téléchargé est :  @result </p> -->
-
-
-<h1>Tentative Ouverture Camera</h1>
-
-<div id="video-set-up">
-  <video id="video"></video>
-  <canvas id="canvas" class="hidden"></canvas>
-  <img src="http://placekitten.com/g/320/261" id="photo" alt="photo" class="hidden">
-  <button id="startbutton">Prendre une photo</button>
+<div class="bandeau">
+  <div class="bandeau-link">
+    <%= link_to input_path do %>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+  </div>
+  <div class=bandeau-title>
+    <h3>Scanner un colis</h3>
+  </div>
 </div>
+<div class="container padded">
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="video-set-up" class=text-center>
+        <video id="video"></video>
+        <canvas id="canvas" class="hidden"></canvas>
+        <img src="http://placekitten.com/g/320/261" id="photo" alt="photo" class="hidden">
+        <div class=text-center>
+          <button id="startbutton" class="btn navbar-wagon-button">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="result-scan">
 
-<div id="result-scan">
+    </div>
+  </div>
 
 </div>
 
@@ -189,7 +202,7 @@
         context.drawImage(video, 0, 0, width, height);
 
         var data = canvas.toDataURL('image/png');
-        console.log(data);
+        //console.log(data);
         photo.setAttribute('src', data);
         var settings = {data: data}
 
