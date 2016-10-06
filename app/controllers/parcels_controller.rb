@@ -1,5 +1,5 @@
 class ParcelsController < ApplicationController
-  before_action :set_parcel, only: [:show, :edit, :update]
+  before_action :set_parcel, only: [:show, :edit, :update, :preview]
 
   def new
     @parcel = Parcel.new
@@ -11,7 +11,7 @@ class ParcelsController < ApplicationController
     @parcel = Parcel.new(parcel_params)
     @parcel.origin = current_user
     @parcel.owner = current_user
-    @parcel.code = "wagon"
+    # @parcel.code = "wagon"
     authorize @parcel
     if @parcel.save
         @parcel.touch
@@ -37,18 +37,21 @@ class ParcelsController < ApplicationController
   end
 
   def show
-    @qr = RQRCode::QRCode.new(@parcel.code, :size => 4, :level => :h )
     authorize @parcel
   end
 
   def decode
-    @parcel = Parcel.new
-    authorize @parcel
     @data = params[:data]
+    @parcel = Parcel.last
+    authorize @parcel
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
     end
+  end
+
+  def preview
+    @qr = RQRCode::QRCode.new(@parcel.code, :size => 4, :level => :h )
   end
 
   private

@@ -29,7 +29,11 @@
   display: flex;
 }
 
+// CSS de la card parcel
 
+.destination-city {
+  font-style: italic;
+}
 // CSS de la page input avec les cartes
 
 .scan-card-content {
@@ -46,7 +50,24 @@
   font-size: 60px;
 }
 
-
 #scan-card {
   height: 50vh;
+}
+
+#card-code {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50vh;
+  margin-bottom: 30px;
+}
+
+#code-display {
+  h1 {
+    font-family: cursive;
+  }
+  margin-bottom: 70px;
+  flex: 1 0 auto;
+  letter-spacing: 10px;
+  font-size: 20px;
 }

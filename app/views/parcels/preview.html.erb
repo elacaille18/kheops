@@ -1,0 +1,31 @@
+<div class="bandeau">
+  <div class="bandeau-link">
+    <%= link_to output_path do %>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+  </div>
+  <div class=bandeau-title>
+    <h3>Infos du colis</h3>
+  </div>
+</div>
+<div class="container padded">
+  <div class="row">
+    <div class="col-xs-12">
+    <h4>Destinataire : <%= @parcel.receiver_full_name%></h4>
+      <div id="qrcode">
+        <%= raw @qr.as_html %>
+      </div>
+      <div style="margin-top:5px;">
+        <form>
+          <div class="form-group">
+            <label for="code-parcel">Taper le code de sortie du colis</label>
+            <input type="text" class="form-control" id="code-parcel" placeholder="ex:1234">
+            <div class="text-center" style="margin-top:5px;">
+              <button type="submit" class="btn navbar-wagon-button">Valider</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
