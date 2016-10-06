@@ -1,5 +1,5 @@
 class ParcelsController < ApplicationController
-  before_action :set_parcel, only: [:show, :edit, :update]
+  before_action :set_parcel, only: [:show, :edit, :update, :preview]
 
   def new
     @parcel = Parcel.new
@@ -37,7 +37,6 @@ class ParcelsController < ApplicationController
   end
 
   def show
-    @qr = RQRCode::QRCode.new(@parcel.code, :size => 4, :level => :h )
     authorize @parcel
   end
 
@@ -49,6 +48,10 @@ class ParcelsController < ApplicationController
       format.html { redirect_to root_path }
       format.js
     end
+  end
+
+  def preview
+    @qr = RQRCode::QRCode.new(@parcel.code, :size => 4, :level => :h )
   end
 
   private

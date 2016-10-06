@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   #   root to: "devise/sessions#new"
   # end
   post 'parcels/decode' => 'parcels/decode'
-  resources :parcels, only: [:new, :create, :edit, :update, :show]
+  resources :parcels, only: [:new, :create, :edit, :update, :show]  do
+    member do
+      get 'preview'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

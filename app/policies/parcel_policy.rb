@@ -26,6 +26,10 @@ class ParcelPolicy < ApplicationPolicy
     #record.user == user
   end
 
+  def preview?
+    true
+  end
+
   def decode?
     true
   end
