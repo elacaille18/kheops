@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :parcels, only: [:new, :create, :edit, :update, :show]  do
     member do
       get 'preview'
+      post 'retrieve_owner'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

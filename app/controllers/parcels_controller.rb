@@ -1,5 +1,5 @@
 class ParcelsController < ApplicationController
-  before_action :set_parcel, only: [:show, :edit, :update, :preview]
+  before_action :set_parcel, only: [:show, :edit, :update, :preview, :retrieve_owner]
 
   def new
     @parcel = Parcel.new
@@ -42,12 +42,20 @@ class ParcelsController < ApplicationController
 
   def decode
     @data = params[:data]
+    # ici il faudra retrouver le colis à partir de la data. lancer qr decoder sur la photo en image 64
+    # Puis on retrouve le bon colis
     @parcel = Parcel.last
     authorize @parcel
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
     end
+  end
+
+  def retrieve_owner
+    @parcel.owner = nil
+    authorize @parcel
+    redirect_to root_path
   end
 
   def preview
