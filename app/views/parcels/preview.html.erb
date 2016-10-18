@@ -15,22 +15,48 @@
       <div id="qrcode">
         <%= raw @qr.as_html %>
       </div>
-      <div style="margin-top:5px;">
+      <div id="form-code" style="margin-top:5px;">
         <form>
           <div class="form-group">
             <label for="code-parcel">Taper le code de sortie du colis</label>
             <input type="text" class="form-control" id="code-parcel" placeholder="ex:1234">
+            <div class="error_message hidden" id="error-word">
+              <p>Erreur. Veuillez rentrer à nouveau le code transmis par votre interlocuteur</p>
+            </div>
             <div class="text-center" style="margin-top:5px;">
-              <button type="submit" class="btn navbar-wagon-button">Valider</button>
+              <button type="submit" class="btn navbar-wagon-button" id="submit_code">Valider</button>
             </div>
           </div>
         </form>
       </div>
-      <div class="text-center">
-        <button class="btn btn-success">
-          OK Donner le Colis
-        </button>
+      <div id="validation-output" class="text-center hidden" style="margin-top:10px;">
+        <%= link_to "OK", retrieve_owner_parcel_path(@parcel), method: :post, class:"btn btn-success" %>
       </div>
     </div>
   </div>
 </div>
+
+<%= content_for (:after_js) do %>
+  <script>
+  $('#submit_code').click(function(){
+    event.preventDefault();
+
+    var code_try = $("#code-parcel").val();
+    console.log("j'atteinds ce Js");
+
+    if(code_try == "1234")
+    {
+      $("#validation-output").removeClass("hidden");
+      $("#form-code").addClass("hidden");
+    } else {
+      $("#error-word").removeClass("hidden")
+                      .delay(2000)
+                      .queue(function() {
+                        $(this).addClass("hidden");
+                        $(this).dequeue();
+                      });
+      return false;
+    }
+  });
+  </script>
+<% end %>

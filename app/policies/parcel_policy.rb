@@ -34,6 +34,10 @@ class ParcelPolicy < ApplicationPolicy
     true
   end
 
+  def become_owner?
+    true
+  end
+
   def retrieve_owner?
     true
   end

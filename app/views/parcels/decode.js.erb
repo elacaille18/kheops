@@ -13,7 +13,7 @@ $('#submit_word').click(function(){
 
     if(word_try == "<%= @parcel.code %>")
     {
-      $("#form-code").removeClass("hidden");
+      $("#info-code").removeClass("hidden");
       $("#form-word").addClass("hidden");
     } else {
       $("#error-word").removeClass("hidden")

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :parcels, only: [:new, :create, :edit, :update, :show]  do
     member do
       get 'preview'
+      post 'become_owner'
       post 'retrieve_owner'
     end
   end
