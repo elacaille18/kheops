@@ -57,15 +57,23 @@ class ParcelsController < ApplicationController
 
   def become_owner
     authorize @parcel
-    # if @parcel.owner == nil
-    @parcel.owner = current_user
+    if @parcel.owner == nil
+      @parcel.owner = current_user
+      @parcel.save
+      flash[:notice] = "Vous êtes le nouveau propriétaire du colis"
+      # rajouter une alert positive
+    else
+    # alert negative
+      flash[:alert] = "Transfert non validé. Veuillez recommencer et attendre la validation "
+    # redirect
+    end
     redirect_to root_path
-    # else
-      # render :template => 'pages/scanqr'
+    # render :template => 'pages/scanqr'
   end
 
   def retrieve_owner
     @parcel.owner = nil
+    @parcel.save
     authorize @parcel
     redirect_to root_path
   end
