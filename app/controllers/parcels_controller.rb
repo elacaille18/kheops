@@ -1,3 +1,5 @@
+require 'base64'
+
 class ParcelsController < ApplicationController
   before_action :set_parcel, only: [:show, :edit, :update, :preview, :become_owner,:retrieve_owner]
 
@@ -42,7 +44,7 @@ class ParcelsController < ApplicationController
 
   def decode
     @data = params[:data]
-    # retrieve_info_qr(@data)
+    @qr_info = retrieve_info_qr(@data)
     # ici il faudra retrouver le colis à partir de la data. lancer qr decoder sur la photo en image 64
     # Puis on retrouve le bon colis
     @parcel = Parcel.last
@@ -83,7 +85,7 @@ class ParcelsController < ApplicationController
     params.require(:parcel).permit(:sender_first_name, :sender_last_name, :sender_phone, :receiver_first_name, :receiver_last_name, :receiver_phone, :destination_id)
   end
 
-  # def retrieve_info_qr(data)
-
-  # end
+  def retrieve_info_qr(data)
+    image_data = Base64.urlsafe_decode64(data['data:image/png;base64,'.length .. -1])
+  end
 end
