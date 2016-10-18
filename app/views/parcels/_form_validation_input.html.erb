@@ -1,35 +1,39 @@
-<div class="card text-center">
-  <p>Code de sortie</p>
-  <strong>1234</strong>
-</div>
 
-<div style="margin-top:5px;">
+<div id="form-word" style="margin-top:5px;">
   <form>
     <div class="form-group">
-      <label for="code-parcel">Taper le "mot" du colis</label>
-      <input type="text" class="form-control" id="code-parcel" placeholder="ex:ABCD">
+      <label for="word-parcel">Taper le "mot" du colis</label>
+      <input type="text" class="form-control" id="word-parcel" placeholder="ex:ABCD">
+      <div class="error_message hidden" id="error-word">
+        <p>Erreur. Veuillez rentrer à nouveau le mot écrit sur le colis</p>
+      </div>
       <div class="text-center" style="margin-top:5px;">
-        <button type="submit" class="btn navbar-wagon-button">Valider</button>
+        <button id="submit_word" type="submit" class="btn navbar-wagon-button">Valider</button>
       </div>
     </div>
   </form>
 </div>
 
+<div id="info-code" class="hidden">
+
+  <div class="card text-center">
+    <p>Code de sortie</p>
+    <strong>1234</strong>
+  </div>
+  <div class="text-center" style="margin-top:5px;">
+    <p>Attendez la validation de votre interlocuteur avant de confirmer</p>
+    <ul class="list-inline">
+      <li>
+        <%= link_to "OK", become_owner_parcel_path(parcel), method: :post, class:"btn btn-success" %>
+      </li>
+      <li>
+        <%= link_to "KO", root_path, class: "btn btn-danger"%>
+      </li>
+    </ul>
+  </div>
+</div>
 <!-- <%# simple_form_for parcel do |f| %>
   # f.input :code %>
   # f.button :submit, class:'btn navbar-wagon-button', id:"submit"%>
    #end
  -->
-<% content_for(:after_js) do %>
-  <script>
-    console.log("j'atteinds ce Js");
-    $('#submit').click(function(){
-        var code_try = $("#code_try").val();
-        if($('input').attr("value") == <%= parcel.code %>)
-        {
-            alert("enter something first dummy!");
-            return false;
-        }
-    });
-  </script>
-<%end%>

@@ -33,4 +33,12 @@ class ParcelPolicy < ApplicationPolicy
   def decode?
     true
   end
+
+  def become_owner?
+    true
+  end
+
+  def retrieve_owner?
+    true
+  end
 end
