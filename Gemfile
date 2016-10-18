@@ -20,6 +20,8 @@ gem 'autoprefixer-rails'
 #pundit
 gem 'pundit'
 
+#Cloudinary
+gem 'cloudinary', '1.1.0'
 
 #locales
 gem 'i18n'
