@@ -44,9 +44,7 @@ class ParcelsController < ApplicationController
 
   def decode
     @data = params[:data]
-    @qr_info = retrieve_info_qr(@data)
-    # ici il faudra retrouver le colis à partir de la data. lancer qr decoder sur la photo en image 64
-    # Puis on retrouve le bon colis
+    @info = retrieve_info_qr(@data)
     @parcel = Parcel.last
     authorize @parcel
     respond_to do |format|
@@ -93,7 +91,16 @@ class ParcelsController < ApplicationController
     params.require(:parcel).permit(:sender_first_name, :sender_last_name, :sender_phone, :receiver_first_name, :receiver_last_name, :receiver_phone, :destination_id)
   end
 
+  require 'open-uri'
+  require 'nokogiri'
+
   def retrieve_info_qr(data)
-    image_data = Base64.urlsafe_decode64(data['data:image/png;base64,'.length .. -1])
+      # Etape a mettre en user.photo =
+      #Cloudinary::Uploader.upload(data)
+      url_test = "http://res.cloudinary.com/dvmeze3nh/image/upload/v1476865021/sma78ccrb9sedroghu2i.png"
+      html_file = open("https://zxing.org/w/decode?u=#{url_test}")
+      html_doc = Nokogiri::HTML(html_file)
+
+      html_doc.css("/html/body/div/table/tr[1]/td[2]/pre").text
   end
 end

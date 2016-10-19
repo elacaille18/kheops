@@ -215,6 +215,7 @@ DEPENDENCIES
   i18n
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri (~> 1.6, >= 1.6.6.2)
   pg
   pry-byebug
   pry-rails
