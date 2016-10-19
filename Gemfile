@@ -20,6 +20,8 @@ gem 'autoprefixer-rails'
 #pundit
 gem 'pundit'
 
+#Cloudinary
+gem 'cloudinary', '1.1.0'
 
 #locales
 gem 'i18n'
@@ -34,8 +36,10 @@ gem 'qrio', '~> 0.0.1'
 #gem 'qrtools', '~> 1.0', '>= 1.0.1'
 #gem 'rmagick', '~> 2.15', '>= 2.15.4'
 #gem 'cmake', '~> 2.8', '>= 2.8.7'
-#gem 'zxing_cpp'
 
+#Parsing
+gem 'carrierwave'
+gem 'nokogiri', '~> 1.6', '>= 1.6.6.2'
 
 group :development, :test do
   gem 'binding_of_caller'

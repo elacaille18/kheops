@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #mount_uploader :photo, PhotoUploader
+  #attr_accessor :photo
+
   #Asssociations
   has_many :events
   has_many :parcels

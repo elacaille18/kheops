@@ -2,6 +2,8 @@ console.log("transfert réussi");
 //$("#result-scan").empty().append("<p>Le code qui vient d'être scanné est : <%= @data =%></p>");
 var new_form = $("<%= j render 'parcels/form_validation_input', parcel: @parcel %>").hide();
 $('#result-scan').empty().append(new_form);
+// apparition de l'info voulu
+//$('#test').empty().append("<p>L'info décodée est : <%= @info%> </p>");
 // Show the new review with an animation!
 new_form.slideDown();
 
@@ -11,7 +13,7 @@ $('#submit_word').click(function(){
     var word_try = $("#word-parcel").val();
     console.log("j'atteinds ce Js");
 
-    if(word_try == "<%= @parcel.code %>")
+    if(word_try == "<%= @parcel.word %>")
     {
       $("#info-code").removeClass("hidden");
       $("#form-word").addClass("hidden");

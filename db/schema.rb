@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928143001) do
+ActiveRecord::Schema.define(version: 20161019114206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160928143001) do
 
   create_table "parcels", force: :cascade do |t|
     t.string   "sender_first_name"
-    t.string   "code"
+    t.string   "word"
     t.integer  "owner_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160928143001) do
     t.string   "receiver_phone"
     t.integer  "origin_id"
     t.integer  "destination_id"
+    t.string   "code"
   end
 
   add_index "parcels", ["destination_id"], name: "index_parcels_on_destination_id", using: :btree
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160928143001) do
     t.string   "pudo_long"
     t.string   "pudo_lat"
     t.string   "pudo_city"
+    t.string   "photo"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

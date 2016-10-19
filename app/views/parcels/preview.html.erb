@@ -44,7 +44,7 @@
     var code_try = $("#code-parcel").val();
     console.log("j'atteinds ce Js");
 
-    if(code_try == "1234")
+    if(code_try == "<%= @parcel.code %>")
     {
       $("#validation-output").removeClass("hidden");
       $("#form-code").addClass("hidden");
