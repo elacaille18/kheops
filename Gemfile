@@ -38,6 +38,7 @@ gem 'qrio', '~> 0.0.1'
 #gem 'cmake', '~> 2.8', '>= 2.8.7'
 
 #Parsing
+gem 'carrierwave'
 gem 'nokogiri', '~> 1.6', '>= 1.6.6.2'
 
 group :development, :test do

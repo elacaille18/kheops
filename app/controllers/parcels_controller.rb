@@ -96,8 +96,11 @@ class ParcelsController < ApplicationController
 
   def retrieve_info_qr(data)
       # Etape a mettre en user.photo =
-      #Cloudinary::Uploader.upload(data)
-      url_test = "http://res.cloudinary.com/dvmeze3nh/image/upload/v1476865021/sma78ccrb9sedroghu2i.png"
+
+      photo_hash = Cloudinary::Uploader.upload(data)
+      current_user.photo = photo_hash['url']
+      current_user.save
+      url_test = current_user.photo
       html_file = open("https://zxing.org/w/decode?u=#{url_test}")
       html_doc = Nokogiri::HTML(html_file)
 
