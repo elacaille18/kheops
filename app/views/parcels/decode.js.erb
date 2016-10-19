@@ -9,8 +9,8 @@ new_form.slideDown();
 
 $('#submit_word').click(function(){
     event.preventDefault();
-
-    var word_try = $("#word-parcel").val();
+    // a mettre en uppercase
+    var word_try = $("#word-parcel").val().toUpperCase();
     console.log("j'atteinds ce Js");
 
     if(word_try == "<%= @parcel.word %>")
