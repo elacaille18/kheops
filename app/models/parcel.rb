@@ -15,7 +15,8 @@ class Parcel < ActiveRecord::Base
   "DUNE", "DEFI", "DEJA", "DINE", "DOME", "ELLE", "EXIL", "EDEN", "EGAL", "ELAN", "EMIR", "EPEE", "ETAT", "ETUI", "ETRE"]
 
   before_validation(on: :create) do
-    self.code = CODE_WORDS.sample
+    self.word = CODE_WORDS.sample
+    self.code = rand(1000..9999).to_s
   end
   # #Validations
   # validates :"user", presence: true
@@ -23,5 +24,9 @@ class Parcel < ActiveRecord::Base
 
   def receiver_full_name
     "#{self.receiver_first_name.capitalize} #{self.receiver_last_name.capitalize}"
+  end
+
+  def encode_qr
+    "#{self.id};#{self.word};"
   end
 end

@@ -13,7 +13,6 @@ class ParcelsController < ApplicationController
     @parcel = Parcel.new(parcel_params)
     @parcel.origin = current_user
     @parcel.owner = current_user
-    # @parcel.code = "wagon"
     authorize @parcel
     if @parcel.save
         @parcel.touch
@@ -45,7 +44,8 @@ class ParcelsController < ApplicationController
   def decode
     @data = params[:data]
     @info = retrieve_info_qr(@data)
-    @parcel = Parcel.last
+    match_data = @info.match(/^(\w+);(\w+);$/)
+    @parcel = Parcel.find(match_data[1].to_i)
     authorize @parcel
     respond_to do |format|
       format.html { redirect_to root_path }
@@ -57,6 +57,7 @@ class ParcelsController < ApplicationController
     authorize @parcel
     if @parcel.owner == nil
       @parcel.owner = current_user
+      @parcel.code = rand(1000..9999)
       @parcel.save
       flash[:notice] = "Vous êtes le nouveau propriétaire du colis"
       # rajouter une alert positive
@@ -77,7 +78,7 @@ class ParcelsController < ApplicationController
   end
 
   def preview
-    @qr = RQRCode::QRCode.new(@parcel.code, :size => 4, :level => :h )
+    @qr = RQRCode::QRCode.new(@parcel.encode_qr, :size => 4, :level => :h )
   end
 
   private
