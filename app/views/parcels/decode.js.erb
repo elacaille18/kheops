@@ -7,8 +7,9 @@ $('#result-scan').empty().append(new_form);
 // Show the new review with an animation!
 new_form.slideDown();
 
-$('#submit_word').click(function(){
+$('#submit_word').click(function(event){
     event.preventDefault();
+    event.stopPropagation();
     // a mettre en uppercase
     var word_try = $("#word-parcel").val().toUpperCase();
     console.log("j'atteinds ce Js");
@@ -17,6 +18,7 @@ $('#submit_word').click(function(){
     {
       $("#info-code").removeClass("hidden");
       $("#form-word").addClass("hidden");
+      return false
     } else {
       $("#error-word").removeClass("hidden")
                       .delay(2000)
