@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   end
 
   def output
-    @parcels = Parcel.all
+    @parcels = Parcel.where("owner_id = ?", current_user.id)
   end
 
   def scanqr

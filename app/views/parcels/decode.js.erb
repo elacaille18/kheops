@@ -7,16 +7,18 @@ $('#result-scan').empty().append(new_form);
 // Show the new review with an animation!
 new_form.slideDown();
 
-$('#submit_word').click(function(){
+$('#submit_word').click(function(event){
     event.preventDefault();
-
-    var word_try = $("#word-parcel").val();
+    event.stopPropagation();
+    // a mettre en uppercase
+    var word_try = $("#word-parcel").val().toUpperCase();
     console.log("j'atteinds ce Js");
 
     if(word_try == "<%= @parcel.word %>")
     {
       $("#info-code").removeClass("hidden");
       $("#form-word").addClass("hidden");
+      return false
     } else {
       $("#error-word").removeClass("hidden")
                       .delay(2000)
