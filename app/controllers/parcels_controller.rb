@@ -16,6 +16,8 @@ class ParcelsController < ApplicationController
     authorize @parcel
     if @parcel.save
         @parcel.touch
+        @event_crea = Event.new({user: current_user, parcel: @parcel, description: "NEW"})
+        @event_crea.save
        redirect_to parcel_path(@parcel), notice: "The parcel #{@parcel.id} has been created."
      else
        render "new"
@@ -63,6 +65,7 @@ class ParcelsController < ApplicationController
       @parcel.owner = current_user
       @parcel.code = rand(1000..9999)
       @parcel.save
+      Event.create!({user: current_user, parcel: @parcel, description: "IN"})
       flash[:notice] = "Vous êtes le nouveau propriétaire du colis"
       # rajouter une alert positive
     else
@@ -77,6 +80,11 @@ class ParcelsController < ApplicationController
   def retrieve_owner
     @parcel.owner = nil
     @parcel.save
+    if @parcel.destination_id == current_user.id
+      Event.create!({user: current_user, parcel: @parcel, description: "DEL"})
+    else
+      Event.create!({user: current_user, parcel: @parcel, description: "OUT"})
+    end
     authorize @parcel
     redirect_to root_path
   end
