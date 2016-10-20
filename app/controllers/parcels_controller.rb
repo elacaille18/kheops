@@ -44,9 +44,13 @@ class ParcelsController < ApplicationController
   def decode
     @data = params[:data]
     @info = retrieve_info_qr(@data)
-    match_data = @info.match(/^(\w+);(\w+);$/)
-    @parcel = Parcel.find(match_data[1].to_i)
+    @parcel = Parcel.last
     authorize @parcel
+    if @info
+      match_data = @info.match(/^(\w+);(\w+);$/)
+      @parcel = Parcel.find(match_data[1].to_i)
+      authorize @parcel
+    end
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
@@ -104,7 +108,10 @@ class ParcelsController < ApplicationController
       url_test = current_user.photo
       html_file = open("https://zxing.org/w/decode?u=#{url_test}")
       html_doc = Nokogiri::HTML(html_file)
-
-      html_doc.css("/html/body/div/table/tr[1]/td[2]/pre").text
+      if html_doc.css("/html/body/div/table/tr[1]/td[2]/pre").empty?
+        return nil
+      else
+        return html_doc.css("/html/body/div/table/tr[1]/td[2]/pre").text
+      end
   end
 end

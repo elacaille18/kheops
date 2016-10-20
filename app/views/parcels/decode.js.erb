@@ -1,11 +1,18 @@
-console.log("transfert réussi");
+console.log("J'atteinds ce JS");
+console.log("<%= @info == nil %>");
 //$("#result-scan").empty().append("<p>Le code qui vient d'être scanné est : <%= @data =%></p>");
-var new_form = $("<%= j render 'parcels/form_validation_input', parcel: @parcel %>").hide();
-$('#result-scan').empty().append(new_form);
-// apparition de l'info voulu
-//$('#test').empty().append("<p>L'info décodée est : <%= @info%> </p>");
-// Show the new review with an animation!
-new_form.slideDown();
+$("#info-for-user").empty();
+<%if  @info != nil %>
+  console.log("l'info nest pas nul")
+  var new_form = $("<%= j render 'parcels/form_validation_input', parcel: @parcel %>").hide();
+  $('#result-scan').empty().append(new_form);
+  // apparition de l'info voulu
+  //$('#test').empty().append("<p>L'info décodée est : <%= @info%> </p>");
+  // Show the new review with an animation!
+  new_form.slideDown();
+ <% else %>
+  $("#info-for-user").append("<p>Echec de la reconnaissance.<br/>Veuillez recommencer</p>");
+<%end%>
 
 $('#submit_word').click(function(event){
     event.preventDefault();

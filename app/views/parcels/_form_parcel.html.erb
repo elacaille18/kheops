@@ -1,10 +1,10 @@
 <%= simple_form_for (parcel) do |f|%>
-  <%= f.input :sender_first_name, label: "Prénom de l'expéditeur", placeholder:"ex: Jean" %>
-  <%= f.input :sender_last_name, label: "Nom de l'expéditeur", placeholder: "ex: Michot" %>
-  <%= f.input :sender_phone, label: "Numéro de portable de l'expéditeur" %>
-  <%= f.input :receiver_first_name, label: "Prénom du receveur", placeholder:"ex: Michel" %>
-  <%= f.input :receiver_last_name, label: "Nom du receveur", placeholder: "ex: Villeneuve" %>
-  <%= f.input :receiver_phone, label: "Numéro de portable du receveur" %>
+  <%= f.input :sender_first_name, label: "Prénom de l'expéditeur", placeholder:"ex: Didier" %>
+  <%= f.input :sender_last_name, label: "Nom de l'expéditeur", placeholder: "ex: Drogba" %>
+  <%= f.input :sender_phone, label: "Tel de l'expéditeur", placeholder:"ex: 0522657645" %>
+  <%= f.input :receiver_first_name, label: "Prénom du destinataire", placeholder:"ex: Jennifer" %>
+  <%= f.input :receiver_last_name, label: "Nom du destinataire", placeholder: "ex: Lopez" %>
+  <%= f.input :receiver_phone, label: "Tel du destinataire", placeholder:"ex: 0623862346" %>
 
   <%= f.association :destination, label: "Destination", collection: pudo_list, label_method: :pudo_city, value_method: :id, include_blank: false  %>
   <!-- <div id="error-title" class="hidden" style="color:#800000;">
@@ -14,6 +14,6 @@
   </div> -->
 
   <div class="text-center">
-    <%= f.button :submit, class:'btn navbar-wagon-button'%>
+    <%= f.button :submit, "Créer Colis", class:'btn navbar-wagon-button'%>
   </div>
 <%end%>
