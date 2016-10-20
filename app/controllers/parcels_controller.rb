@@ -80,7 +80,7 @@ class ParcelsController < ApplicationController
   def retrieve_owner
     @parcel.owner = nil
     @parcel.save
-    if @parcel.destination_id = current_user.id
+    if @parcel.destination_id == current_user.id
       Event.create!({user: current_user, parcel: @parcel, description: "DEL"})
     else
       Event.create!({user: current_user, parcel: @parcel, description: "OUT"})
