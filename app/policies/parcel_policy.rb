@@ -10,7 +10,7 @@ class ParcelPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user_is_pudo? || user_is_admin?
   end
 
   def edit?
@@ -18,7 +18,7 @@ class ParcelPolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    user_is_pudo? || user_is_admin?
   end
 
   def show?
@@ -27,7 +27,7 @@ class ParcelPolicy < ApplicationPolicy
   end
 
   def preview?
-    true
+    record.owner == user || user_is_admin?
   end
 
   def decode?
@@ -41,4 +41,17 @@ class ParcelPolicy < ApplicationPolicy
   def retrieve_owner?
     true
   end
+
+  private
+
+  def user_is_admin?
+    user.admin
+  end
+
+  def user_is_pudo?
+    user.pudo
+  end
 end
+
+
+

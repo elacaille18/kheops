@@ -20,13 +20,14 @@
           </div>
         </div>
       </div>
-
+      <% if current_user.admin || current_user.pudo %>
       <h5 class="text-center">ou</h5>
       <div class="card" id="new-parcel-card">
         <%= link_to "", new_parcel_path, class: "card-link"%>
         <div class="scan-card-content">
           <h4>Créer un colis</h4>
         </div>
+      <% end %>
       </div>
     </div>
   </div>

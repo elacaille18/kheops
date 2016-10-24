@@ -1,6 +1,6 @@
 class Parcel < ActiveRecord::Base
   #Associations
-  belongs_to :owner, class_name: "User", foreign_key: "user_id", primary_key: "user_id"
+  belongs_to :owner, class_name: "User"
   belongs_to :origin, class_name: "User"
   belongs_to :destination, class_name: "User"
 
