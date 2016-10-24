@@ -40,6 +40,7 @@
   <script>
   $('#submit_code').click(function(){
     event.preventDefault();
+    event.stopPropagation();
 
     var code_try = $("#code-parcel").val();
     console.log("j'atteinds ce Js");
@@ -48,6 +49,7 @@
     {
       $("#validation-output").removeClass("hidden");
       $("#form-code").addClass("hidden");
+      return false;
     } else {
       $("#error-word").removeClass("hidden")
                       .delay(2000)
