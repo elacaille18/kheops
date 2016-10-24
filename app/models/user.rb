@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
 
   #Asssociations
   has_many :events
-  has_many :parcels
+  has_many :parcels, foreign_key: "owner_id"
 end
