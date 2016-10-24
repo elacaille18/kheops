@@ -38,7 +38,7 @@
 
 <%= content_for (:after_js) do %>
   <script>
-  $('#submit_code').click(function(){
+  $('#submit_code').click(function(event){
     event.preventDefault();
     event.stopPropagation();
 
