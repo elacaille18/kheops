@@ -6,6 +6,17 @@ class Parcel < ActiveRecord::Base
 
   has_many :events
   #has_many :users, through: :events
+
+  #Validations
+  validates :"sender_first_name", presence: true
+  validates :"sender_last_name", presence: true
+  validates :"sender_phone", presence: true
+  validates :"receiver_first_name", presence: true
+  validates :"receiver_last_name", presence: true
+  validates :"receiver_phone", presence: true
+
+
+
   CODE_WORDS = ["ABRI", "ACTE", "AIDE", "AIME", "ALLO", "AMER", "AOUT", \
   "AUBE", "AUTO", "AZUR", "BABY", "BEAU", "BIDE", "BLEU", "BLOC", "BOBO", "BOSS", \
   "BOUC", "BOUE", "BOUM", "BOXE", "BRAS", "BREF", "BENI", "CAFE", "CAGE", "CAKE", "CAMP", \
@@ -18,9 +29,6 @@ class Parcel < ActiveRecord::Base
     self.word = CODE_WORDS.sample
     self.code = rand(1000..9999).to_s
   end
-  # #Validations
-  # validates :"user", presence: true
-  # validates :description, presence: true
 
   def receiver_full_name
     "#{self.receiver_first_name.capitalize} #{self.receiver_last_name.capitalize}"

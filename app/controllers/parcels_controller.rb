@@ -5,7 +5,7 @@ class ParcelsController < ApplicationController
 
   def new
     @parcel = Parcel.new
-    @pudo_list = User.where(pudo: "true")
+    @pudo_list = User.where(pudo: true).where.not(id: current_user.id)
     authorize @parcel
   end
 
