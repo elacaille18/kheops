@@ -12,6 +12,9 @@
           <%= link_to "", input_path, class: "card-link"%>
           <div class="choice-content">
             <h4>Entrée de colis</h4>
+            <div class="parcel-image">
+              <%= cl_image_tag("parcel_in_pcaykq", :alt => "Parcel_in", :width => 100, :height => 100, :crop => :fill) %>
+            </div>
           </div>
         </div>
       </div>
@@ -21,6 +24,9 @@
           <%= link_to "", output_path, class: "card-link"%>
           <div class="choice-content">
             <h4>Sortie de colis</h4>
+            <div class="parcel-image">
+              <%= cl_image_tag("parcel_out_mxr3fb", :alt => "Parcel_out", :width => 100, :height => 100, :crop => :fill) %>
+            </div>
           </div>
         </div>
       </div>

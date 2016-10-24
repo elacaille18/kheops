@@ -1,6 +1,10 @@
 <div class="user-info text-center">
   <div id=user-avatar>
-    <%= image_tag "http://www.fao.org/fileadmin/templates/aiq2013/images/user-placeholder.jpg", class:"avatar-bordered" %>
+    <% if current_user.pudo %>
+      <%= cl_image_tag("pudo_o65w0k", alt: "pudo-image", :width => 50, :height => 50, crop: "fill", class: "avatar-bordered")%>
+    <% else %>
+      <%= cl_image_tag("bike_in7fcz", alt: "runner-image", :width => 50, :height => 50, crop: "fill", class: "avatar-bordered")%>
+    <% end %>
   </div>
   <div id= user-info >
     <%= current_user.email%>
