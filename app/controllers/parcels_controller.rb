@@ -1,7 +1,7 @@
 require 'base64'
 
 class ParcelsController < ApplicationController
-  before_action :set_parcel, only: [:show, :edit, :update, :preview, :become_owner,:retrieve_owner]
+  before_action :set_parcel, only: [:show, :edit, :update, :preview, :become_owner, :retrieve_owner]
 
   def new
     @parcel = Parcel.new
@@ -15,10 +15,9 @@ class ParcelsController < ApplicationController
     @parcel.owner = current_user
     authorize @parcel
     if @parcel.save
-        @parcel.touch
         @event_crea = Event.new({user: current_user, parcel: @parcel, description: "NEW"})
         @event_crea.save
-       redirect_to parcel_path(@parcel), notice: "The parcel #{@parcel.id} has been created."
+       redirect_to parcel_path(@parcel), notice: "Le colis a été créé avec succès."
      else
        render "new"
     end
@@ -33,7 +32,7 @@ class ParcelsController < ApplicationController
     @parcel.update(parcel_params)
     authorize @parcel
     if @parcel.save
-      redirect_to parcel_path(@parcel), notice: "The parcel #{@parcel.id} has been updated."
+      redirect_to parcel_path(@parcel), notice: "Le colis a été mis à jour."
     else
       render :edit
     end
@@ -60,24 +59,24 @@ class ParcelsController < ApplicationController
   end
 
   def become_owner
+    # Reprise de l'ownership du parcel et creation de l'evenement correspondant
     authorize @parcel
     if @parcel.owner == nil
       @parcel.owner = current_user
+      # Regeneration d'un code aléatoire
       @parcel.code = rand(1000..9999)
       @parcel.save
       Event.create!({user: current_user, parcel: @parcel, description: "IN"})
       flash[:notice] = "Vous êtes le nouveau propriétaire du colis"
-      # rajouter une alert positive
     else
     # alert negative
       flash[:alert] = "Transfert non validé. Veuillez recommencer et attendre la validation "
-    # redirect
     end
     redirect_to root_path
-    # render :template => 'pages/scanqr'
   end
 
   def retrieve_owner
+    # Abandon de l'ownership
     @parcel.owner = nil
     @parcel.save
     if @parcel.destination_id == current_user.id
@@ -108,12 +107,13 @@ class ParcelsController < ApplicationController
   require 'nokogiri'
 
   def retrieve_info_qr(data)
-      # Etape a mettre en user.photo =
-
+      #J'upload la photo sous format base64 et elle se met en PNG sur cloudinary
       photo_hash = Cloudinary::Uploader.upload(data)
       current_user.photo = photo_hash['url']
       current_user.save
+      # J'enregistre en base l'url de la photo
       url_test = current_user.photo
+      # Scraping du resultat en envoyant l'url de la photo sur le site de decode
       html_file = open("https://zxing.org/w/decode?u=#{url_test}")
       html_doc = Nokogiri::HTML(html_file)
       if html_doc.css("/html/body/div/table/tr[1]/td[2]/pre").empty?
