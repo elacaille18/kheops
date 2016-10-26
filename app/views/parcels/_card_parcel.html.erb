@@ -3,7 +3,9 @@
   <div class="card-parcel-content">
     <div class="receiver-name">
       <h4><%= parcel.receiver_full_name %></h4>
-      <p class="destination-city"><%= parcel.destination.pudo_city %></p>
+      <%if parcel.destination.pudo_city %>
+        <p class="destination-city"><%= parcel.destination.pudo_city %></p>
+      <%end%>
     </div>
   </div>
 </div>
